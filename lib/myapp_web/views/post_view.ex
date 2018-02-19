@@ -18,4 +18,12 @@ defmodule MyappWeb.PostView do
       user: render_one(post.user, UserView, "user.json")
     }
   end
+
+  def render("post_without_user.json", %{post: post}) do
+    %{
+      id: post.id,
+      title: post.title,
+      content: post.content  
+    }
+  end
 end

@@ -22,7 +22,7 @@ defmodule MyappWeb.UserView do
   def render("user_with_token.json", %{user: %{user: user, token: token}}) do
     %{id: user.id,
       username: user.username,
-      posts: render_many(user.posts, PostView, "post.json"),
+      posts: render_many(user.posts, PostView, "post_without_user.json"),
       meta: %{
         token: token
       }
