@@ -11,5 +11,6 @@ defmodule MyappWeb.Router do
     post "/users/auth", UserController, :auth
     resources "/users", UserController, except: [:new, :edit]
     resources "/posts", PostController, except: [:new, :edit]
+    get "/newsfeed", PostController, :newsfeed
   end
 end

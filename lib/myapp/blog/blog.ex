@@ -21,6 +21,22 @@ defmodule Myapp.Blog do
     Post
     |> where([p], p.user_id == ^user.id)
     |> Repo.all()
+    |> Repo.preload(:user)
+  end
+
+  @doc """
+  Returns the list of posts.
+
+  ## Examples
+
+      iex> list_posts()
+      [%Post{}, ...]
+
+  """
+  def list_all_posts() do
+    Post
+    |> Repo.all()
+    |> Repo.preload(:user)
   end
 
   @doc """
@@ -37,7 +53,7 @@ defmodule Myapp.Blog do
       ** (Ecto.NoResultsError)
 
   """
-  def get_post!(id, user), do: Repo.get_by!(Post, id: id, user_id: user.id)
+  def get_post!(id, user), do: Repo.get_by!(Post, id: id, user_id: user.id) |> Repo.preload(:user)
 
   @doc """
   Creates a post.

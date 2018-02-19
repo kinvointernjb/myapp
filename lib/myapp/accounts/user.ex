@@ -2,6 +2,7 @@ defmodule Myapp.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
   alias Myapp.Accounts.User
+  alias Myapp.Blog.Post
   import Comeonin.Bcrypt
 
 
@@ -9,6 +10,7 @@ defmodule Myapp.Accounts.User do
     field :encrypted_password, :string
     field :username, :string
     field :password, :string, virtual: true
+    has_many :posts, Post
 
     timestamps()
   end

@@ -12,6 +12,11 @@ defmodule MyappWeb.PostController do
     render(conn, "index.json", posts: posts)
   end
 
+  def newsfeed(conn, _params) do
+    posts = Blog.list_all_posts()
+    render(conn, "index.json", posts: posts)
+  end
+
   def create(conn, %{"post" => post_params}) do
     with {:ok, %Post{} = post} <- Blog.create_post(post_params, conn.assigns.user) do
       conn

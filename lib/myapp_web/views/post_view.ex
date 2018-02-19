@@ -1,6 +1,6 @@
 defmodule MyappWeb.PostView do
   use MyappWeb, :view
-  alias MyappWeb.PostView
+  alias MyappWeb.{UserView, PostView}
 
   def render("index.json", %{posts: posts}) do
     %{data: render_many(posts, PostView, "post.json")}
@@ -11,8 +11,11 @@ defmodule MyappWeb.PostView do
   end
 
   def render("post.json", %{post: post}) do
-    %{id: post.id,
+    %{
+      id: post.id,
       title: post.title,
-      content: post.content}
+      content: post.content,
+      user: render_one(post.user, UserView, "user.json")
+    }
   end
 end

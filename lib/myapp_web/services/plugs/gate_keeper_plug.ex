@@ -7,7 +7,7 @@ defmodule MyappWeb.Services.Plugs.GateKeeperPlug do
   def init(opts), do: opts
 
   def call(conn, _opts) do
-    case get_req_header(conn, "authorization") do
+    case get_req_header(conn, "auth") do
       ["Bearer " <> token] ->
         token
         |> get_token_claims()
